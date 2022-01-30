@@ -15,7 +15,7 @@ def get_test_users_data(number_of_entries: int) -> list:
         for user_entry in users_list:
             for attribute in ('id', 'userStatus'):
                 user_entry[attribute] = int(user_entry[attribute])
-            # additional username randomization
+            # additional randomization to increase amount of unique users
             user_entry['username'] += str(randint(1000, 9999))
 
         return users_list

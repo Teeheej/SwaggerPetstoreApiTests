@@ -21,7 +21,7 @@ def cleanup_try_to_delete_users():
     for username in (user_data_for_creation['username'], user_data_edited['username']):
         response = requests.delete(f'{base_url}/{username}')
         if response.status_code == 200 and response.json()['message'] == username:
-            print(f'User {username} was deleted during the after-tests cleanup')
+            print(f'User {username} was deleted during the after-module cleanup')
 
 
 @pytest.mark.dependency()
@@ -72,7 +72,7 @@ def test_login():
 
     assert int(response.status_code) == 200
     assert 'logged in user session:' in response.json()['message'], 'no expected substring in the message attribute'
-    assert now <= parser.parse(x_expires_after), 'token expire time should not be earlier than current time'
+    assert now <= parser.parse(x_expires_after), 'token expire time should not be earlier than the current time'
     assert int(x_rate_limit) == 5000, 'unexpected value of request rate limit'
 
 
